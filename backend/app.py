@@ -1,11 +1,20 @@
 from flask import Flask
 from flask import jsonify, request, redirect, url_for,send_file
 import json
-from connectiondb import cargar_datos,listar_restaurantes,agregar_restaurante,modificar_restaurante,eliminar_restaurante
+from connectiondb import cargar_datos,listar_restaurantes,agregar_restaurante,modificar_restaurante,eliminar_restaurante,obtener_restaurante
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/cargar_db', methods=['GET'])
+@app.before_first_request
+def cargar_db():
+    try:
+        cargar_datos ()
+        return "OK"
+    except (Exception) as err:
+        return str(err), 500
 
 @app.route('/', methods=['GET'])
 def listall_restaurants():
@@ -54,12 +63,12 @@ def delete_restaurant():
     except (Exception) as err:
         return str(err), 500
 
-@app.route('/cargar_db', methods=['GET'])
-@app.before_first_request
-def cargar_db():
+@app.route('/get', methods=['POST'])
+def get_restaurant():
     try:
-        cargar_datos ()
-        return "OK"
+        id = request.json["id"]
+        res = obtener_restaurante (id)
+        return jsonify (res)
     except (Exception) as err:
         return str(err), 500
 

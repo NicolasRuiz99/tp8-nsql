@@ -63,7 +63,18 @@ const modify_restaurant = (item) => {
 
 const delete_restaurant = (id) => {
     return axios
-        .post("http://localhost:5000/add", {
+        .post("http://localhost:5000/delete", {
+            id
+        })
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
+
+const get_restaurant = (id) => {
+    return axios
+        .post("http://localhost:5000/get", {
             id
         })
         .then(res => {
@@ -79,5 +90,6 @@ export {
     list_restaurants,
     add_restaurant,
     delete_restaurant,
-    modify_restaurant
+    modify_restaurant,
+    get_restaurant
 };

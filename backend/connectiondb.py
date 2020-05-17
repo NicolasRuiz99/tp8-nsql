@@ -13,7 +13,7 @@ def inicializar_db ():
 def listar_restaurantes ():
     res = []
     db = inicializar_db ()
-    for x in db.restaurants.find({}):
+    for x in db.restaurants.find({},{"_id":1,"name":2,"borough":3,"cuisine":4,"address":5}):
         x["id"] = str(x["_id"])
         del x ["_id"]
         res.append (x)
@@ -31,11 +31,19 @@ def eliminar_restaurante (id):
     db = inicializar_db()
     res = db.restaurants.delete_one({"_id":ObjectId(id)})
 
+def obtener_restaurante (id):
+    db = inicializar_db()
+    res = db.restaurants.find_one({"_id":ObjectId(id)})
+    res["id"] = str(res["_id"])
+    del res ["_id"]
+    return res
+
 def cargar_datos ():
     db = inicializar_db ()
-    with open('restaurants.json') as f:
-        file_data = json.load(f)
-    db.restaurants.drop()
-    db.restaurants.insert_many(file_data)
+    if db.restaurants.count() == 0:
+        with open('restaurants.json') as f:
+            file_data = json.load(f)
+        db.restaurants.drop()
+        db.restaurants.insert_many(file_data)
 
         

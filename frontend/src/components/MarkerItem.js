@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {Marker,Popup} from 'react-leaflet';
 import {greenIcon,blueIcon,goldIcon,redIcon,violetIcon,blackIcon} from '../leafletIcons';
+import {withRouter,Link} from 'react-router-dom';
 
 const MarkerItem = ({item}) => {
 
@@ -42,6 +43,8 @@ const MarkerItem = ({item}) => {
                 {item.borough}
                 <br/> 
                 Tipo de comida: {item.cuisine}
+                <br/> 
+                <Link type="button" to={`/restaurant/${item.id}`} >Ver detalles</Link>
               </Popup>
             </Marker>
         );
@@ -52,4 +55,4 @@ const MarkerItem = ({item}) => {
     
 };
 
-export default MarkerItem;
+export default withRouter (MarkerItem);

@@ -4,6 +4,7 @@ import Mapa from './components/Mapa';
 import './bootstrap.min.css'
 import Navbar from './components/Navbar';
 import AddRestaurant from './components/AddRestaurant';
+import RestaurantInfo from './components/RestaurantInfo';
 
 const App = () => {
 
@@ -13,13 +14,18 @@ const App = () => {
 	return (
 		<Fragment>
 			<Router>
-			<Navbar setSearch={setSearch} search={search} setSearchClick={setSearchClick} search={search} />
+			<Navbar setSearch={setSearch} setSearchClick={setSearchClick} search={search} />
 			<Switch>
 				<Route exact path="/" render={()=>(
 					<Mapa search={search} searchClick={searchClick} setSearchClick={setSearchClick} />
 				)} />
 				<Route exact path="/add" render={()=>(
 					<AddRestaurant/>
+				)}/>
+				<Route exact path="/restaurant/:id" render={(props)=>(
+					<RestaurantInfo 
+						id = {props.match.params.id}
+					/>
 				)}/>
 			</Switch>
 			</Router>
