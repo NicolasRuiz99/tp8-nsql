@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 import json
 
 def inicializar_db ():
@@ -12,10 +13,23 @@ def inicializar_db ():
 def listar_restaurantes ():
     res = []
     db = inicializar_db ()
-    for x in db.restaurants.find({}).limit(1000):
-        x["_id"] = str(x["_id"])
+    for x in db.restaurants.find({}):
+        x["id"] = str(x["_id"])
+        del x ["_id"]
         res.append (x)
     return res
+
+def agregar_restaurante (item):
+    db = inicializar_db ()
+    db.restaurants.insert_one(item)
+
+def modificar_restaurante (item):
+    db = inicializar_db ()
+    db.restaurants.update_one({"_id":ObjectId(item["id"])},{"$set":item})
+
+def eliminar_restaurante (id):
+    db = inicializar_db()
+    res = db.restaurants.delete_one({"_id":ObjectId(id)})
 
 def cargar_datos ():
     db = inicializar_db ()

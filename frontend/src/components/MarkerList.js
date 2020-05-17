@@ -6,7 +6,7 @@ const MarkerList = ({list}) => {
     return (
         <MarkerClusterGroup>
             {list.map((item)=>(
-                <MarkerItem key={item._id} item={item} />
+                <MarkerItem key={item.id} item={item} />
             ))}
         </MarkerClusterGroup>
     );

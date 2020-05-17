@@ -43,10 +43,41 @@ const list_restaurants = () => {
         .catch(err => { throw err.response.data })
 }
 
+const add_restaurant = (item) => {
+    return axios
+        .post("http://localhost:5000/add", item)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
+
+const modify_restaurant = (item) => {
+    return axios
+        .post("http://localhost:5000/modify", item)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
+
+const delete_restaurant = (id) => {
+    return axios
+        .post("http://localhost:5000/add", {
+            id
+        })
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
 
 export {
     alertConfirm,
     alertError,
     alertSuccess,
-    list_restaurants
+    list_restaurants,
+    add_restaurant,
+    delete_restaurant,
+    modify_restaurant
 };
