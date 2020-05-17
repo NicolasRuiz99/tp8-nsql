@@ -34,9 +34,9 @@ const alertConfirm = () => {
 
 //backend request functions
 
-const herolistAll = () => {
+const list_restaurants = () => {
     return axios
-        .get("http://localhost:5000/hero")
+        .get("http://localhost:5000/")
         .then(res => {
             return res.data
         })
@@ -48,5 +48,5 @@ export {
     alertConfirm,
     alertError,
     alertSuccess,
-    herolistAll
+    list_restaurants
 };
