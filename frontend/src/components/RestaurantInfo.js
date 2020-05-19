@@ -1,5 +1,5 @@
 import React,{useState,useEffect,Fragment} from "react"
-import { modify_restaurant, get_restaurant, alertError, delete_restaurant,alertConfirm,alertSuccess } from "../functions";
+import { modify_restaurant, get_restaurant, alertError, delete_restaurant,alertConfirm,alertSuccess } from "../utils/functions";
 import {withRouter} from 'react-router-dom';
 
 const RestaurantInfo = ({id,history}) => {

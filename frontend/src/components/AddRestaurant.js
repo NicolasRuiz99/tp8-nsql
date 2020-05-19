@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { add_restaurant,alertConfirm,alertSuccess,alertError } from "../functions";
+import { add_restaurant,alertConfirm,alertSuccess,alertError } from "../utils/functions";
 import {withRouter} from 'react-router-dom';
 
 const AddRestaurant = ({history}) => {

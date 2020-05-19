@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import jsonify, request, redirect, url_for,send_file
 import json
-from connectiondb import cargar_datos,listar_restaurantes,agregar_restaurante,modificar_restaurante,eliminar_restaurante,obtener_restaurante
+from connectiondb import cargar_datos,listar_restaurantes,agregar_restaurante,modificar_restaurante,eliminar_restaurante,obtener_restaurante,listar_categorias,listar_restaurantes_tipo
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -20,6 +20,20 @@ def cargar_db():
 def listall_restaurants():
     try:
         return jsonify (listar_restaurantes())
+    except (Exception) as err:
+        return str(err), 500
+
+@app.route('/list-type/<tipo>', methods=['GET'])
+def list_type(tipo):
+    try:
+        return jsonify (listar_restaurantes_tipo(tipo))
+    except (Exception) as err:
+        return str(err), 500
+
+@app.route('/list-categories', methods=['GET'])
+def list_categories():
+    try:
+        return jsonify (listar_categorias())
     except (Exception) as err:
         return str(err), 500
 

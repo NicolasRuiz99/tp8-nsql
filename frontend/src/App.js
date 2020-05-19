@@ -5,19 +5,19 @@ import './bootstrap.min.css'
 import Navbar from './components/Navbar';
 import AddRestaurant from './components/AddRestaurant';
 import RestaurantInfo from './components/RestaurantInfo';
+import MapaDemo from './components/MapaDemo';
 
 const App = () => {
 
-	const [search,setSearch] = useState ("");
-	const [searchClick,setSearchClick] = useState (false);
+	
 
 	return (
 		<Fragment>
 			<Router>
-			<Navbar setSearch={setSearch} setSearchClick={setSearchClick} search={search} />
+			<Navbar/>
 			<Switch>
 				<Route exact path="/" render={()=>(
-					<Mapa search={search} searchClick={searchClick} setSearchClick={setSearchClick} />
+					<Mapa/>
 				)} />
 				<Route exact path="/add" render={()=>(
 					<AddRestaurant/>
@@ -27,6 +27,7 @@ const App = () => {
 						id = {props.match.params.id}
 					/>
 				)}/>
+				<Route exact path="/about" component={MapaDemo} />
 			</Switch>
 			</Router>
 		</Fragment>

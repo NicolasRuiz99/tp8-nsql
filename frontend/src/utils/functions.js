@@ -43,6 +43,24 @@ const list_restaurants = () => {
         .catch(err => { throw err.response.data })
 }
 
+const list_restaurants_type = (tipo) => {
+    return axios
+        .get(`http://localhost:5000/list-type/${tipo}`)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
+
+const list_categories = () => {
+    return axios
+        .get("http://localhost:5000/list-categories")
+        .then(res => {
+            return res.data
+        })
+        .catch(err => { throw err.response.data })
+}
+
 const add_restaurant = (item) => {
     return axios
         .post("http://localhost:5000/add", item)
@@ -91,5 +109,7 @@ export {
     add_restaurant,
     delete_restaurant,
     modify_restaurant,
-    get_restaurant
+    get_restaurant,
+    list_categories,
+    list_restaurants_type
 };

@@ -19,6 +19,22 @@ def listar_restaurantes ():
         res.append (x)
     return res
 
+def listar_restaurantes_tipo (tipo):
+    res = []
+    db = inicializar_db ()
+    for x in db.restaurants.find({"cuisine":{"$regex":tipo}},{"_id":1,"name":2,"borough":3,"cuisine":4,"address":5}):
+        x["id"] = str(x["_id"])
+        del x ["_id"]
+        res.append (x)
+    return res
+
+def listar_categorias ():
+    res = []
+    db = inicializar_db ()
+    for x in db.restaurants.distinct("cuisine"):
+        res.append (x)
+    return res
+
 def agregar_restaurante (item):
     db = inicializar_db ()
     db.restaurants.insert_one(item)
@@ -43,7 +59,8 @@ def cargar_datos ():
     if db.restaurants.count() == 0:
         with open('restaurants.json') as f:
             file_data = json.load(f)
-        db.restaurants.drop()
         db.restaurants.insert_many(file_data)
-
+        with open('restaurants_cdelu.json') as f:
+            file_data = json.load(f)
+        db.restaurants.insert_many(file_data)
         

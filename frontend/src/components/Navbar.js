@@ -1,7 +1,7 @@
 import React from "react";
 import {Link,withRouter} from 'react-router-dom';
 
-const Navbar = ({setSearch,setSearchClick,search}) => {
+const Navbar = () => {
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-primary">
             <Link className="navbar-brand" to="/"><img width="60" height="60" src={require('../logo.png')} /></Link>
@@ -16,13 +16,10 @@ const Navbar = ({setSearch,setSearchClick,search}) => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/add">Agregar restaurante</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/about">About</Link>
+                </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">    
-                <div class="input-group mb-3">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Filtrar por tipo de comida" onChange={e=>setSearch(e.target.value)}/>
-                    <button className="btn btn-secondary my-2 my-sm-0" type="button" onClick={()=>setSearchClick(true)}>Filtrar</button>
-                </div>     
-                </form>
             </div>
         </div>
     );

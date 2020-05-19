@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import {Marker,Popup} from 'react-leaflet';
-import {greenIcon,blueIcon,goldIcon,redIcon,violetIcon,blackIcon} from '../leafletIcons';
+import {greenIcon,blueIcon,goldIcon,redIcon,violetIcon,blackIcon} from '../utils/leafletIcons';
 import {withRouter,Link} from 'react-router-dom';
 
 const MarkerItem = ({item}) => {
