@@ -7,6 +7,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+#branch2
+
 @app.route('/cargar_db', methods=['GET'])
 @app.before_first_request
 def cargar_db():
