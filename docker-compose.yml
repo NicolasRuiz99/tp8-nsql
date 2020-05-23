@@ -8,14 +8,6 @@ services:
       - '5000:5000'
     volumes:
       - ./backend:/backend
-    depends_on:
-      - "db"
-
-  db:
-    container_name: 'db_mongo'
-    image: mongo
-    ports:
-      - "27017:27017"
 
   frontend:
     build: ./frontend
