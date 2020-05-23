@@ -45,12 +45,10 @@ def modificar_restaurante (item):
     del item ["id"]
     restaurants = db.collection(u'restaurants')
     restaurants.document(id).update(item)
-    #db.restaurants.update_one({"_id":ObjectId(item["id"])},{"$set":item})
 
 def eliminar_restaurante (id):
     restaurants = db.collection(u'restaurants')
     restaurants.document(id).delete()
-    #res = db.restaurants.delete_one({"_id":ObjectId(id)})
 
 def obtener_restaurante (id):
     restaurants = db.collection(u'restaurants')
